@@ -1,0 +1,5 @@
+fish/fish_variables
+nvim/lazy-lock.json
+fish/fishd.tmp.*
+tmux/plugins/
+tmux/plugins/**
