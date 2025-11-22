@@ -1,0 +1,2 @@
+# Omarchy  `.config` files
+
