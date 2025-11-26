@@ -37,3 +37,13 @@ alias pc "pactl set-default-sink"
 #
 set -Ux PATH $PATH $HOME/.flutter/bin
 set -Ux PATH $PATH $HOME/.flutter/bin
+
+# opencode
+fish_add_path /home/gowtz/.opencode/bin
+
+# pnpm
+set -gx PNPM_HOME "/home/gowtz/.local/share/pnpm"
+if not string match -q -- $PNPM_HOME $PATH
+  set -gx PATH "$PNPM_HOME" $PATH
+end
+# pnpm end
