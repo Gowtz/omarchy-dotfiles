@@ -7,6 +7,7 @@ return {
 
     -- set keymaps
     local keymap = vim.keymap -- for conciseness
+    vim.keymap.set("n", "<leader>tt", ":TodoTelescope<CR>")   -- open new tab
 
     keymap.set("n", "]t", function()
       todo_comments.jump_next()
@@ -19,3 +20,4 @@ return {
     todo_comments.setup()
   end,
 }
+
