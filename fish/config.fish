@@ -19,6 +19,8 @@ alias f-conf "nvim ~/.config/fish/config.fish"
 alias disp " ddcutil setvcp 10 "
 alias btc "bluetoothctl connect"
 alias lz "lazygit"
+alias CleanDownloads "python ~/.scripts/cleanDownloads.py"
+alias imdb "~/.scripts/.venv/bin/python ~/.scripts/MovieMeta.py"
 
 
 # set -gx pnpm_home "/home/gowtham/.local/share/pnpm"
