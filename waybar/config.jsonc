@@ -3,16 +3,18 @@
   "layer": "top",
   "position": "top",
   "spacing": 0,
+  "margin":"2px",
   "height": 26,
   "modules-left": [
     "custom/omarchy",
     "hyprland/workspaces"
   ],
   "modules-center": [
-    "clock",
     "custom/update",
     "custom/voxtype",
-    "custom/screenrecording-indicator"
+    "custom/screenrecording-indicator",
+    "clock",
+    "custom/waycal"
   ],
   "modules-right": [
     "group/tray-expander",
@@ -20,6 +22,8 @@
     "network",
     "pulseaudio",
     "cpu",
+    "backlight",
+    "custom/ddc",
     "battery"
   ],
   "hyprland/workspaces": {
@@ -44,11 +48,7 @@
       "2": [],
       "3": [],
       "4": [],
-      "5": [],
-      "6": [],
-      "7": [],
-      "8": [],
-      "9": [],
+      "5": []
     }
   },
   "custom/omarchy": {
@@ -67,7 +67,7 @@
   },
   "cpu": {
     "interval": 5,
-    "format": "󰍛 ",
+    "format": "󰍛 {usage}%",
     "on-click": "omarchy-launch-or-focus-tui btop"
   },
   "clock": {
@@ -84,12 +84,12 @@
       "󰤥",
       "󰤨"
     ],
-    "format": "{icon}",
-    "format-wifi": "{icon}",
+    "format": "{icon} {essid}",
+    "format-wifi": "{icon} {essid}",
     "format-ethernet": "󰀂",
     "format-disconnected": "󰤮",
-    "tooltip-format-wifi": "{essid} ({frequency} GHz)\n⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
-    "tooltip-format-ethernet": "⇣{bandwidthDownBytes}  ⇡{bandwidthUpBytes}",
+    "tooltip-format-wifi": "{essid} ({frequency} GHz)",
+    "tooltip-format-ethernet": "Connected",
     "tooltip-format-disconnected": "Disconnected",
     "interval": 3,
     "spacing": 1,
@@ -97,8 +97,8 @@
   },
   "battery": {
     "format": "{icon} {capacity}%",
-    "format-discharging": "{icon}",
-    "format-charging": "{icon}",
+    "format-discharging": "{icon} {capacity}",
+    "format-charging": "{icon} {capacity}",
     "format-plugged": "",
     "format-icons": {
       "charging": [
@@ -126,7 +126,7 @@
         "󰁹"
       ]
     },
-    "format-full": "󰂅",
+    "format-full": "󰂅 {capacity}",
     "tooltip-format-discharging": "{power:>1.0f}W↓ {capacity}%",
     "tooltip-format-charging": "{power:>1.0f}W↑ {capacity}%",
     "interval": 5,
@@ -139,27 +139,27 @@
   "bluetooth": {
     "format": "",
     "format-disabled": "󰂲",
-    "format-connected": "󰂱",
+    "format-connected": "󰂱 {num_connections}",
     "format-no-controller": "",
     "tooltip-format": "Devices connected: {num_connections}",
     "on-click": "omarchy-launch-bluetooth"
   },
-
   "pulseaudio": {
-    "format": "{icon} ",
-    "on-click": "omarchy-launch-audio",
+    "format": "{icon} {volume}",
+    // "on-click": "omarchy-launch-audio",
+    "on-click": "omarchy-audio-output-switch",
     "on-click-right": "pamixer -t",
-    "format-bluetooth": "{icon} {desc}",
+    "format-bluetooth": "{icon} {volume}%",
     "tooltip-format": "Playing at {volume}%",
     "scroll-step": 5,
     "format-muted": "",
 
     "format-icons": {
-        "headphone": "",
-        "headset": "󰋎",
-        "handsfree": "󰋎",
+      "headphone": "",
+      "headset": "󰋎",
+      "handsfree": "󰋎",
       "headset": "",
-        "default": [
+      "default": [
         "",
         "",
         ""
@@ -177,6 +177,11 @@
       "tray"
     ]
   },
+"custom/waycal": {
+  "format": "󰃭",
+  "on-click": "pkill -x waycal || waycal",
+  "tooltip-format": "Calendar"
+},
   "custom/expand-icon": {
     "format": "",
     "tooltip": false
@@ -215,5 +220,19 @@
   "tray": {
     "icon-size": 12,
     "spacing": 17
-  }
+  },
+
+"backlight": {
+  "device": "intel_backlight", 
+  "format": " {percent}%",
+  "on-scroll-up": "brightnessctl set +5%",
+  "on-scroll-down": "brightnessctl set 5%-"
+},
+
+"custom/ddc": {
+  "exec": "~/.config/waybar/scripts/ddc.sh",
+  "interval": 2,
+  "on-scroll-up": "ddcutil setvcp 10 + 5 --noverify",
+  "on-scroll-down": "ddcutil setvcp 10 - 5 --noverify"
+}
 }
