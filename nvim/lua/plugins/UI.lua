@@ -21,7 +21,7 @@ return {
 					light = "latte",
 					dark = "frappe",
 				},
-				transparent_background = false, -- disables setting the background color.
+				transparent_background = true, -- disables setting the background color.
 				float = {
 					transparent = true, -- enable transparent floating windows
 					solid = true, -- use solid styling for floating windows, see |winborder|
