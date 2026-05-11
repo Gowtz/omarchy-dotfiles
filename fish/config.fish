@@ -38,3 +38,14 @@ alias imdb "~/.scripts/.venv/bin/python ~/.scripts/MovieMeta.py"
 #   set -gx path "$pnpm_home" $path
 # end
 # pnpm end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/gowtz/.lmstudio/bin
+# End of LM Studio CLI section
+
+#pyenv
+set -Ux PYENV_ROOT $HOME/.pyenv
+fish_add_path $PYENV_ROOT/bin
+
+pyenv init - fish | source
+pyenv virtualenv-init - | source
