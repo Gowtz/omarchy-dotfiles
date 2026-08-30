@@ -3,7 +3,9 @@ vim.lsp.enable({
 	"lua_ls",
 	"ts_ls",
 	"emmet_ls",
-  "tailwindcss"
+  "tailwindcss",
+	"pyright",
+	"jdtls"
 })
 
 local keymap = vim.keymap -- for conciseness
