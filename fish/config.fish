@@ -49,3 +49,7 @@ fish_add_path $PYENV_ROOT/bin
 
 pyenv init - fish | source
 pyenv virtualenv-init - | source
+
+
+# Added by Antigravity CLI installer
+set -gx PATH "/home/gowtz/.local/bin" $PATH
