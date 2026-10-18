@@ -29,6 +29,15 @@ vim.keymap.set("n", "<C-w><right>", "<C-w>>")
 vim.keymap.set("n", "<C-w><up>", "<C-w>+")
 vim.keymap.set("n", "<C-w><down>", "<C-w>-")
 
+-- Folding (native vim keys work too: za/zo/zc/zR/zM/zj/zk)
+vim.keymap.set("n", "<leader>fo", "za", { desc = "Toggle fold under cursor" })
+vim.keymap.set("n", "<leader>fc", "zc", { desc = "Close fold under cursor" })
+vim.keymap.set("n", "<leader>fO", "zo", { desc = "Open fold under cursor" })
+vim.keymap.set("n", "<leader>fa", "zR", { desc = "Open all folds" })
+vim.keymap.set("n", "<leader>fm", "zM", { desc = "Close all folds" })
+vim.keymap.set("n", "<leader>fj", "zj", { desc = "Next fold" })
+vim.keymap.set("n", "<leader>fk", "zk", { desc = "Prev fold" })
+
 vim.cmd("source ~/.config/nvim/lua/config/tt.vim")
 -- -- Alternatively, using lua API
 vim.keymap.set("n", "<space>fb", function()

@@ -16,6 +16,7 @@ return {
         "pyright",
         "jdtls",
         "eslint",
+        "gopls",
       },
     },
     dependencies = {

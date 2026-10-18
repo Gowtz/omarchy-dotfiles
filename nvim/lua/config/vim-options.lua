@@ -25,6 +25,22 @@ vim.opt.isfname:append("@-@")
 vim.opt.updatetime = 50
 vim.g.mapleader = " "
 
+-- Folding (treesitter-based, works with your installed parsers)
+vim.opt.foldmethod = "expr"
+vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
+vim.opt.foldcolumn = "0"
+vim.opt.foldtext = ""
+
+-- Disable unused remote providers (silences :checkhealth warnings)
+-- Remove/comment a line if you start using that language's plugins
+vim.g.loaded_node_provider = 0
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
+
 -- local severity = vim.diagnostic.severity
 -- vim.diagnostic.config({
 -- 	signs = {
