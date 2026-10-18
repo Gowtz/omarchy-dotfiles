@@ -3,6 +3,11 @@ end
 function fish_right_prompt
 end
 
+# Ctrl+Backspace sends 0x08 (same byte as Ctrl+H) and fish binds neither by default,
+# so it does nothing. Map both to delete the previous word, matching Alt+Backspace.
+bind ctrl-backspace backward-kill-word
+bind ctrl-h backward-kill-word
+
 set -x OMARCHY_SCREENSHOT_DIR "$HOME/Pictures/Screenshot"
 
 alias py "source ~/.dev/env/bin/activate.fish"
@@ -21,7 +26,7 @@ alias btc "bluetoothctl connect"
 alias lz "lazygit"
 alias CleanDownloads "python ~/.scripts/cleanDownloads.py"
 alias imdb "~/.scripts/.venv/bin/python ~/.scripts/MovieMeta.py"
-
+alias dy="dig +short $argv @dns.toys"
 
 # set -gx pnpm_home "/home/gowtham/.local/share/pnpm"
 # if not string match -q -- $pnpm_home $path
@@ -39,10 +44,6 @@ alias imdb "~/.scripts/.venv/bin/python ~/.scripts/MovieMeta.py"
 # end
 # pnpm end
 
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH /home/gowtz/.lmstudio/bin
-# End of LM Studio CLI section
-
 #pyenv
 set -Ux PYENV_ROOT $HOME/.pyenv
 fish_add_path $PYENV_ROOT/bin
@@ -53,3 +54,6 @@ pyenv virtualenv-init - | source
 
 # Added by Antigravity CLI installer
 set -gx PATH "/home/gowtz/.local/bin" $PATH
+
+# Add UV package amnager
+source $HOME/.local/share/../bin/env.fish
