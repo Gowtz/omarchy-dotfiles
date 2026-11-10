@@ -4,7 +4,7 @@ config-file = ?"~/.local/state/omarchy/current/theme/ghostty.conf"
 # Font
 font-family = "JetBrainsMono Nerd Font"
 font-style = Regular
-font-size = 11
+font-size = 18
 
 # Window
 window-theme = ghostty
@@ -39,7 +39,7 @@ mouse-scroll-multiplier = 0.95
 
 # You can preview the config here
  
-background-opacity = 0.95
+background-opacity = 0.7
 background-blur = 50
 
 # Fix general slowness on hyprland (https://github.com/ghostty-org/ghostty/discussions/3224)
