@@ -59,3 +59,8 @@ set -gx PATH "/home/gowtz/.local/bin" $PATH
 
 # Add UV package amnager
 source $HOME/.local/share/../bin/env.fish
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /home/gowtz/.lmstudio/bin
+# End of LM Studio CLI section
+
