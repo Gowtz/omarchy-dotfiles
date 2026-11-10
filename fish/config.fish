@@ -25,7 +25,9 @@ alias disp " ddcutil setvcp 10 "
 alias btc "bluetoothctl connect"
 alias lz "lazygit"
 alias CleanDownloads "python ~/.scripts/cleanDownloads.py"
-alias imdb "~/.scripts/.venv/bin/python ~/.scripts/MovieMeta.py"
+alias imdb "~/.scripts/.venv/bin/python ~/.scripts/obsidian_media.py movie"
+# add movies/books to the Obsidian vault (IMDb/OMDb + Goodreads)
+alias md "~/.scripts/.venv/bin/python ~/.scripts/obsidian_media.py"
 alias dy="dig +short $argv @dns.toys"
 
 # set -gx pnpm_home "/home/gowtham/.local/share/pnpm"
