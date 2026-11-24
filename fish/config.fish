@@ -64,3 +64,6 @@ source $HOME/.local/share/../bin/env.fish
 set -gx PATH $PATH /home/gowtz/.lmstudio/bin
 # End of LM Studio CLI section
 
+
+# Hermes Agent command
+fish_add_path "$HOME/.local/bin"
