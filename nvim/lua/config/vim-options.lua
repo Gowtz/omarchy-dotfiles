@@ -12,6 +12,8 @@ vim.o.background = "dark" -- or "light" for light mode
 vim.opt.wrap = true
 vim.opt.swapfile = false
 vim.opt.backup = false
+vim.opt.undofile = true
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
@@ -23,7 +25,11 @@ vim.opt.signcolumn = "yes"
 vim.opt.isfname:append("@-@")
 
 vim.opt.updatetime = 50
+
+-- Leader must be set before lazy.nvim loads plugins (and before keymap.lua).
+-- This is the single source of truth for the leader key.
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Folding (treesitter-based, works with your installed parsers)
 vim.opt.foldmethod = "expr"

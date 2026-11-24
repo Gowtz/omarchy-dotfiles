@@ -1,4 +1,3 @@
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 vim.keymap.set("n", "<Esc><Esc>", ":noh<CR>")
 
@@ -38,8 +37,8 @@ vim.keymap.set("n", "<leader>fm", "zM", { desc = "Close all folds" })
 vim.keymap.set("n", "<leader>fj", "zj", { desc = "Next fold" })
 vim.keymap.set("n", "<leader>fk", "zk", { desc = "Prev fold" })
 
-vim.cmd("source ~/.config/nvim/lua/config/tt.vim")
--- -- Alternatively, using lua API
+-- Open the telescope file browser at the current file's directory
 vim.keymap.set("n", "<space>fb", function()
+	require("telescope").load_extension("file_browser")
 	require("telescope").extensions.file_browser.file_browser()
-end)
+end, { desc = "File browser" })

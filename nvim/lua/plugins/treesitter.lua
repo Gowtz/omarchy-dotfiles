@@ -1,25 +1,10 @@
--- return {
--- 	"nvim-treesitter/nvim-treesitter",
--- 	branch = "main", -- critical for Neovim 0.12+
--- 	build = ":TSUpdate",
--- 	lazy = false,
--- 	config = function()
--- 		local config = require("nvim-treesitter.configs")
--- 		config.setup({
--- 			ensure_installed = { "lua", "javascript", "typescript", "python", "java" },
--- 			highlight = { enable = true },
--- 			indent = { enable = true },
--- 			auto_install = true,
--- 		})
--- 	end,
--- }
--- NEW (main branch)
 return {
 	"nvim-treesitter/nvim-treesitter",
 	branch = "main",
+	lazy = false,
 	build = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter").setup()
+		-- No-op when the parsers are already installed; installs only what's missing.
 		require("nvim-treesitter").install({
 			"lua",
 			"javascript",
@@ -27,15 +12,14 @@ return {
 			"tsx",
 			"markdown",
 			"markdown_inline",
-			-- add whatever langs you had in your old ensure_installed
 		})
 
-		-- highlighting/indent are now enabled per-filetype via autocmd
+		-- Highlighting/indent are enabled per-filetype (main branch behaviour).
 		vim.api.nvim_create_autocmd("FileType", {
-			pattern = { "lua", "javascript", "typescript", "tsx", "markdown" },
-			callback = function()
-				vim.treesitter.start()
-				vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+			pattern = { "lua", "javascript", "typescript", "typescriptreact", "tsx", "markdown" },
+			callback = function(args)
+				pcall(vim.treesitter.start, args.buf)
+				vim.bo[args.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
 			end,
 		})
 	end,

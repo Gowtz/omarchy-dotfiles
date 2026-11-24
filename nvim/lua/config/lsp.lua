@@ -1,11 +1,21 @@
+-- Server list is kept in sync with the `ensure_installed` list in
+-- lua/plugins/lsp/mason.lua. mason-lspconfig's `automatic_enable` is disabled
+-- there so this list is the single source of truth (this also stops tools like
+-- `stylua` from being enabled as an LSP).
 vim.lsp.enable({
 	"gopls",
 	"lua_ls",
 	"ts_ls",
-	"emmet_ls",
-  "tailwindcss",
+	"emmet_language_server",
+	"tailwindcss",
 	"pyright",
-	"jdtls"
+	"jdtls",
+	"html",
+	"cssls",
+	"svelte",
+	"graphql",
+	"prismals",
+	"eslint",
 })
 
 local keymap = vim.keymap -- for conciseness
@@ -19,11 +29,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- set keybinds
 		opts.desc = "Show LSP references"
 		keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
-
-		opts.desc = "Show diagnostic message"
-		keymap.set("n", "<leader>d", function()
-			vim.diagnostic.open_float(nil, { focus = false })
-		end, opts)
 
 		opts.desc = "Go to declaration"
 		keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
@@ -47,13 +52,15 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
 
 		opts.desc = "Show line diagnostics"
-		keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
+		keymap.set("n", "<leader>d", function()
+			vim.diagnostic.open_float(nil, { focus = false })
+		end, opts) -- show diagnostics for line
 
 		opts.desc = "Go to previous diagnostic"
 		keymap.set("n", "[d", function()
 			vim.diagnostic.jump({ count = -1, float = true })
 		end, opts) -- jump to previous diagnostic in buffer
-		--
+
 		opts.desc = "Go to next diagnostic"
 		keymap.set("n", "]d", function()
 			vim.diagnostic.jump({ count = 1, float = true })
@@ -61,26 +68,14 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		opts.desc = "Show documentation for what is under cursor"
 		keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
 	end,
 })
-
 
 local severity = vim.diagnostic.severity
 
 vim.diagnostic.config({
-	signs = {
-		text = {
-			[severity.ERROR] = " ",
-			[severity.WARN] = " ",
-			[severity.HINT] = "󰠠 ",
-			[severity.INFO] = " ",
-		},
-	},
-})
-vim.diagnostic.config({
-	virtual_lines = false,
 	virtual_text = true,
+	virtual_lines = false,
 	underline = true,
 	update_in_insert = false,
 	severity_sort = true,
@@ -90,14 +85,14 @@ vim.diagnostic.config({
 	},
 	signs = {
 		text = {
-			[vim.diagnostic.severity.ERROR] = "󰅚 ",
-			[vim.diagnostic.severity.WARN] = "󰀪 ",
-			[vim.diagnostic.severity.INFO] = "󰋽 ",
-			[vim.diagnostic.severity.HINT] = "󰌶 ",
+			[severity.ERROR] = "󰅚 ",
+			[severity.WARN] = "󰀪 ",
+			[severity.INFO] = "󰋽 ",
+			[severity.HINT] = "󰌶 ",
 		},
 		numhl = {
-			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
-			[vim.diagnostic.severity.WARN] = "WarningMsg",
+			[severity.ERROR] = "ErrorMsg",
+			[severity.WARN] = "WarningMsg",
 		},
 	},
 })

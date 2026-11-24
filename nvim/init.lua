@@ -1,4 +1,6 @@
 require("config.vim-options")
+require("config.remote_clipboard").setup()
 require("config.keymap")
+require("config.terminal")
 require("config.lazy")
 require("config.lsp")
